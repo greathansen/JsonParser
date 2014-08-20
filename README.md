@@ -20,12 +20,8 @@ Pending:
   
   Objc Code
   
-  JsonParser* parser = [[JsonParser alloc] init];
-  
-  //Representation of data throught NSData
-  NSData *data =  [@"{d : {results :{Name : 'gustavo'}}}" dataUsingEncoding:NSUTF8StringEncoding];
-  
-  //The result is the id to the object, 
-  // could be a NSArray (each item is a entity object) or the entity
-  id result = [parser parseWithData:data forType:Entity.class]; 
+  JsonParser *parser = [[JsonParser alloc] init];
+    NSData *data = [@"{\"Name\" : \"Gustavo\", \"LastName\" : \"Hansen\", \"Age\" : \"26\"}" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    Entity *result = [parser parseWithData:data forType:Entity.class];
   
