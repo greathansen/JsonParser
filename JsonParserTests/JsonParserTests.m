@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "JsonParser.h"
+#import "Entity.h"
 
 @interface JsonParserTests : XCTestCase
 
@@ -26,9 +28,16 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+-(void)testParseASimpleEntity{
+
+    JsonParser *parser = [[JsonParser alloc] init];
+    NSData *data = [@"{\"Name\" : \"Gustavo\", \"LastName\" : \"Hansen\", \"Age\" : \"26\"}" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    Entity *result = [parser parseWithData:data forType:Entity.class];
+    
+    assert([result.Name isEqualToString: @"Gustavo"]);
+    assert([result.LastName isEqualToString: @"Hansen"]);
+    assert(result.Age == 26);
 }
 
 @end

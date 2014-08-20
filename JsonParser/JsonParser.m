@@ -39,13 +39,8 @@
     }
     else{
         jsonResult = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error:nil];
-        
-        NSMutableArray *array = [NSMutableArray array];
-        for (NSDictionary * dictionary in jsonResult) {
-            [array addObject:[self parseObjectData:dictionary Type:type]];
-        };
-        
-        parseResult = array;
+
+        parseResult = [self parseObjectData:jsonResult Type:type];
     }
     
     return parseResult;

@@ -17,6 +17,7 @@
 		ECF3F11E19A5050F00D05D8B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = ECF3F11C19A5050F00D05D8B /* InfoPlist.strings */; };
 		ECF3F12019A5050F00D05D8B /* JsonParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3F11F19A5050F00D05D8B /* JsonParserTests.m */; };
 		ECF3F12B19A5057800D05D8B /* Property.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3F12A19A5057800D05D8B /* Property.m */; };
+		ECF3F12E19A5127000D05D8B /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF3F12D19A5127000D05D8B /* Entity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		ECF3F11F19A5050F00D05D8B /* JsonParserTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JsonParserTests.m; sourceTree = "<group>"; };
 		ECF3F12919A5057800D05D8B /* Property.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Property.h; sourceTree = "<group>"; };
 		ECF3F12A19A5057800D05D8B /* Property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Property.m; sourceTree = "<group>"; };
+		ECF3F12C19A5127000D05D8B /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		ECF3F12D19A5127000D05D8B /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,8 @@
 			children = (
 				ECF3F11F19A5050F00D05D8B /* JsonParserTests.m */,
 				ECF3F11A19A5050F00D05D8B /* Supporting Files */,
+				ECF3F12C19A5127000D05D8B /* Entity.h */,
+				ECF3F12D19A5127000D05D8B /* Entity.m */,
 			);
 			path = JsonParserTests;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECF3F12E19A5127000D05D8B /* Entity.m in Sources */,
 				ECF3F12019A5050F00D05D8B /* JsonParserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
