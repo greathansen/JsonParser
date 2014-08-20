@@ -20,7 +20,7 @@ Pending:
   
   Objc Code
   
-  JsonParser *parser = [[JsonParser alloc] init];
+    JsonParser *parser = [[JsonParser alloc] init];
     NSData *data = [@"{\"Name\" : \"Gustavo\", \"LastName\" : \"Hansen\", \"Age\" : \"26\"}" dataUsingEncoding:NSUTF8StringEncoding];
     
     Entity *result = [parser parseWithData:data forType:Entity.class];
