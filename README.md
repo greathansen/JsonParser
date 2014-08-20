@@ -16,7 +16,7 @@ Pending:
    
 -How to Use:
 
-  -All the object must be Plain objects
+  -All the objects must be Plain objects
   
   Objc Code
   
