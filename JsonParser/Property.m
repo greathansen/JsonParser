@@ -28,6 +28,10 @@
     return [self.SubStringType isEqualToString:@"NSString"];
 }
 
+-(bool)isNumber{
+    return [self.SubStringType isEqualToString:@"NSInteger"];
+}
+
 -(bool)isDate{
     return [self.SubStringType isEqualToString:@"NSDate"];
 }

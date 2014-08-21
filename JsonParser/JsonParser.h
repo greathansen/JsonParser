@@ -10,6 +10,6 @@
 
 @interface JsonParser : NSObject
 
--(id)parseWithData : (NSData*)data forType : (Class) type;
+-(id)parseWithData : (NSData*)data forType : (Class) type selector:(NSArray* )keys;
 
 @end

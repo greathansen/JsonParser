@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Entity.h"
+#import "NSObject_Protocols.h"
+@class Entity;
 
 @interface EntityWithComplexType : NSObject
 

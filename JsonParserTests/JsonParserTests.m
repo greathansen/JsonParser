@@ -34,7 +34,7 @@
     JsonParser *parser = [[JsonParser alloc] init];
     NSData *data = [@"{\"Name\" : \"Gustavo\", \"LastName\" : \"Hansen\", \"Age\" : \"26\", \"LastLogIn\" : \"2014-05-20T17:07:16Z\"} " dataUsingEncoding:NSUTF8StringEncoding];
     
-    Entity *result = [parser parseWithData:data forType:Entity.class];
+    Entity *result = [parser parseWithData:data forType:Entity.class selector:nil];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssz"];
@@ -51,7 +51,7 @@
     JsonParser *parser = [[JsonParser alloc] init];
     NSData *data = [@"{\"Peoples\":[{\"Name\" : \"Gustavo\", \"LastName\" : \"Hansen\", \"Age\" : \"26\", \"LastLogIn\" : \"2014-05-20T17:07:16Z\"}, {\"Name\" : \"Homer\", \"LastName\" : \"Simpson\", \"Age\" : \"36\", \"LastLogIn\" : \"2014-05-20T17:07:16Z\"}]}" dataUsingEncoding:NSUTF8StringEncoding];
     
-    EntityWithComplexType *result = [parser parseWithData:data forType:EntityWithComplexType.class];
+    EntityWithComplexType *result = [parser parseWithData:data forType:EntityWithComplexType.class selector:nil];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssz"];

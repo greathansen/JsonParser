@@ -47,6 +47,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ECD2484C19A6426900464FA0 /* NSObject_Protocols.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSObject_Protocols.h; sourceTree = "<group>"; };
 		ECF3F10019A5050F00D05D8B /* libJsonParser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libJsonParser.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECF3F10319A5050F00D05D8B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		ECF3F10719A5050F00D05D8B /* JsonParser-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JsonParser-Prefix.pch"; sourceTree = "<group>"; };
@@ -147,6 +148,7 @@
 				ECF3F12D19A5127000D05D8B /* Entity.m */,
 				ECF3F17019A5371C00D05D8B /* EntityWithComplexType.h */,
 				ECF3F17119A5371C00D05D8B /* EntityWithComplexType.m */,
+				ECD2484C19A6426900464FA0 /* NSObject_Protocols.h */,
 			);
 			path = JsonParserTests;
 			sourceTree = "<group>";

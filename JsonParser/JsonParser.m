@@ -19,28 +19,24 @@
 
 @implementation JsonParser
 
--(id)parseWithData : (NSData*)data forType : (Class) type{
+-(id)parseWithData : (NSData*)data forType : (Class) type selector:(NSArray* )keys{
     
     id parseResult;
     self.properties = [self getPropertiesFor:type];
     
-    NSArray *jsonResult;
-    NSDictionary *dResult = [[NSJSONSerialization JSONObjectWithData:data
-                                                             options: NSJSONReadingMutableContainers error:nil] valueForKey:@"d"];
+    NSArray * jsonArray = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error:nil];
     
-    if(dResult.count > 1){
-        parseResult = [self parseObjectData:dResult Type:type];
-    }
-    else if(dResult.count == 1){
-        jsonResult = [dResult valueForKey:@"results"];
+    if(keys != nil){
+        NSArray *jsonResult;
         
-        if(jsonResult.count > 1) parseResult = [self parseArrayData:jsonResult Type:type];
+        for (NSString* key in keys) {
+            jsonResult = [jsonArray valueForKey:key];
+        }
         
+        parseResult = [self parseArrayData:jsonResult Type:type];
     }
     else{
-        jsonResult = [NSJSONSerialization JSONObjectWithData:data options: NSJSONReadingMutableContainers error:nil];
-
-        parseResult = [self parseObjectData:jsonResult Type:type];
+        parseResult = [self parseObjectData:jsonArray Type:type];
     }
     
     return parseResult;
@@ -96,7 +92,12 @@
     if ([property isComplexType]) {
         
         if([property isString]){
-            [returnType setValue:[data valueForKeyPath:property.Name] forKeyPath:property.Name];
+            NSString* value = [data valueForKeyPath:property.Name];
+            [returnType setValue:value forKeyPath:property.Name];
+        }
+        else if([property isNumber]){
+            NSString* value = [data valueForKeyPath:property.Name];
+            [returnType setInteger:[value integerValue] forKey:property.Name];
         }
         else if([property isDate]){
             
@@ -108,38 +109,85 @@
             
         }
         else if([property isCollection]){
-            Class type = NSClassFromString([property getCollectionEntity]);
-            
-            NSArray * array = [self getPropertiesFor:type];
-            NSArray *newData = [data valueForKeyPath:property.Name];
-            NSMutableArray* returnData = [NSMutableArray array];
-            
-            for (NSDictionary* dicc in newData) {
-                
-                id entity = [[type alloc] init];
-                for (Property* property in array) {
-                
-                    [self setValueFor:property Data:dicc Return:entity];
-                }
-                
-                [returnData addObject:entity];
-                [returnType setValue:returnData forKeyPath:property.Name];
-            }
+            [self setValueForCollection:property :data :returnType];
         }
-        else{//complex type
-            
-            Class type = NSClassFromString(property.Type);
-            
-            NSArray * array = [self getPropertiesFor:type];
-            NSDictionary *newData = [data valueForKeyPath:property.Name];
-            for (Property* property in array) {
-                
-                [self setValueFor:property Data:newData Return:returnType];
-            }
+        else{
+            [self setValueForComplexType:property :data :returnType];
         }
     }
     else{
-        [returnType setValue:[data valueForKeyPath:property.Name] forKeyPath:property.Name];
+        [self setValueForPrimitiveType:property :data :returnType];
+    }
+}
+
+-(void)setValueForPrimitiveType :(Property*)property : (NSDictionary*)data :(id)returnType{
+    
+    const char * charType = [[property.Type substringFromIndex:1] UTF8String];
+    NSString * value = [data valueForKeyPath:property.Name];
+    
+    if(value == nil) return;
+    
+    if (strcmp(charType, @encode(float)) == 0) {
+        float f = [value floatValue];
+        [returnType setFloat:f forKey:property.Name];
+    }
+    else if (strcmp(charType, @encode(int)) == 0) {
+        [returnType setValue:value forKeyPath:property.Name];
+    }
+    else if (strcmp(charType, @encode(bool)) == 0) {
+        bool b = [value boolValue];
+        [returnType setBool:b forKey:property.Name];
+    }
+    else {
+        [returnType setValue:value forKeyPath:property.Name];
+    }
+}
+
+-(void)setValueForCollection :(Property*)property : (NSDictionary*)data :(id)returnType{
+    NSArray *newData = [data valueForKeyPath:property.Name];
+    
+    if(newData == nil) return;
+    
+    Class type = NSClassFromString([property getCollectionEntity]);
+    
+    NSArray * array = [self getPropertiesFor:type];
+    NSMutableArray* returnData = [NSMutableArray array];
+    
+    for (NSDictionary* dicc in newData) {
+        
+        id entity = [[type alloc] init];
+        for (Property* property in array) {
+            
+            [self setValueFor:property Data:dicc Return:entity];
+        }
+        
+        [returnData addObject:entity];
+        [returnType setValue:returnData forKeyPath:property.Name];
+    }
+}
+
+-(void)setValueForComplexType :(Property*)property : (NSDictionary*)data :(id)returnType{
+    
+    Class type = NSClassFromString(property.SubStringType);
+    
+    if (type == nil) {//Enum
+        NSString* value = [data valueForKeyPath:property.Name];
+        
+        if(value != nil){
+            [returnType setValue:value forKeyPath:property.Name];
+        }
+    }
+    else{
+        id entity = [[type alloc] init];
+        
+        NSArray * array = [self getPropertiesFor:type];
+        NSDictionary *newData = [data valueForKeyPath:property.Name];
+        
+        for (Property* property in array) {
+            [self setValueFor:property Data:newData Return:entity];
+        }
+        
+        [returnType setValue:entity forKeyPath:property.Name];
     }
 }
 @end
