@@ -3,18 +3,16 @@ JsonParser
 Simple json parser for Objective C
 Type that can be parser:
   -Complex Object with simple properties:
-      -NSString
+  -NSString
   -Float
   -bool
   -int
   -Complex type with Superclasses
-  -NSDate
-  -NSMutableArray
 
 Pending:
    -NSArray
    -NSDictionary
-   
+   -NSDate
    
 -How to Use:
 
