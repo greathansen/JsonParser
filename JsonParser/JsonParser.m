@@ -108,7 +108,23 @@
             
         }
         else if([property isCollection]){
-            //TODO
+            Class type = NSClassFromString([property getCollectionEntity]);
+            
+            NSArray * array = [self getPropertiesFor:type];
+            NSArray *newData = [data valueForKeyPath:property.Name];
+            NSMutableArray* returnData = [NSMutableArray array];
+            
+            for (NSDictionary* dicc in newData) {
+                
+                id entity = [[type alloc] init];
+                for (Property* property in array) {
+                
+                    [self setValueFor:property Data:dicc Return:entity];
+                }
+                
+                [returnData addObject:entity];
+                [returnType setValue:returnData forKeyPath:property.Name];
+            }
         }
         else{//complex type
             

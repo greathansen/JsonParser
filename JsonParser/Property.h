@@ -19,5 +19,6 @@
 -(bool)isDate;
 -(bool)isCollection;
 -(bool)isComplexType;
+-(NSString*)getCollectionEntity;
 
 @end

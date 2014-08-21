@@ -33,9 +33,16 @@
 }
 
 -(bool)isCollection{
-    return [self.SubStringType isEqualToString:@"NSMutableArray"] ||
-    [self.SubStringType isEqualToString:@"NSArray"] ||
-    [self.SubStringType isEqualToString:@"NSDictionary"];
+    return [self.SubStringType hasPrefix:@"NSMutableArray"] ||
+            [self.SubStringType hasPrefix:@"NSArray"] ||
+            [self.SubStringType hasPrefix:@"NSDictionary"];
+}
+
+-(NSString*)getCollectionEntity{
+
+    NSArray *attributes = [self.SubStringType componentsSeparatedByString:@"<"];
+    NSString* att = [attributes objectAtIndex:attributes.count -1];
+    return [att substringWithRange:NSMakeRange(0, [att length] -1)];
 }
 
 -(bool)isComplexType{
