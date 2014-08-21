@@ -8,11 +8,13 @@ Type that can be parser:
   -bool
   -int
   -Complex type with Superclasses
+  -NSDate
+  -NSMutableArray
 
 Pending:
    -NSArray
    -NSDictionary
-   -NSDate
+   
    
 -How to Use:
 
