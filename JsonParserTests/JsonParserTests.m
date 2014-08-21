@@ -31,13 +31,18 @@
 -(void)testParseASimpleEntity{
 
     JsonParser *parser = [[JsonParser alloc] init];
-    NSData *data = [@"{\"Name\" : \"Gustavo\", \"LastName\" : \"Hansen\", \"Age\" : \"26\"}" dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *data = [@"{\"Name\" : \"Gustavo\", \"LastName\" : \"Hansen\", \"Age\" : \"26\", \"LastLogIn\" : \"2014-05-20T17:07:16Z\"} " dataUsingEncoding:NSUTF8StringEncoding];
     
     Entity *result = [parser parseWithData:data forType:Entity.class];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssz"];
+    NSDate *date = [dateFormatter dateFromString:@"2014-05-20T17:07:16Z"];
     
     assert([result.Name isEqualToString: @"Gustavo"]);
     assert([result.LastName isEqualToString: @"Hansen"]);
     assert(result.Age == 26);
+    assert([result.LastLogIn isEqualToDate:date]);
 }
 
 @end

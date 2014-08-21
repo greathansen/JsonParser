@@ -59,6 +59,7 @@
 		ECF3F12A19A5057800D05D8B /* Property.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Property.m; sourceTree = "<group>"; };
 		ECF3F12C19A5127000D05D8B /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
 		ECF3F12D19A5127000D05D8B /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entity.m; sourceTree = "<group>"; };
+		ECF3F12F19A51EB200D05D8B /* Collections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Collections.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +122,7 @@
 				ECF3F10619A5050F00D05D8B /* Supporting Files */,
 				ECF3F12919A5057800D05D8B /* Property.h */,
 				ECF3F12A19A5057800D05D8B /* Property.m */,
+				ECF3F12F19A51EB200D05D8B /* Collections.h */,
 			);
 			path = JsonParser;
 			sourceTree = "<group>";
@@ -416,6 +418,7 @@
 				ECF3F12519A5050F00D05D8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ECF3F12619A5050F00D05D8B /* Build configuration list for PBXNativeTarget "JsonParserTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +427,7 @@
 				ECF3F12819A5050F00D05D8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

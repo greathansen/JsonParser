@@ -98,6 +98,15 @@
         if([property isString]){
             [returnType setValue:[data valueForKeyPath:property.Name] forKeyPath:property.Name];
         }
+        else if([property isDate]){
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssz"];
+            
+            NSDate *date = [dateFormatter dateFromString:[data valueForKeyPath:property.Name]];
+            [returnType setValue:date forKeyPath:property.Name];
+            
+        }
         else if([property isCollection]){
             //TODO
         }

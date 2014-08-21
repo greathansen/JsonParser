@@ -13,5 +13,11 @@
 @property NSString *Name;
 @property int Age;
 @property NSString *LastName;
+@property NSDate *LastLogIn;
+
+@end
+
+//To Handle Typed Collections
+@protocol Entity
 
 @end

@@ -16,6 +16,7 @@
 
 -(id)initWith : (objc_property_t)property;
 -(bool)isString;
+-(bool)isDate;
 -(bool)isCollection;
 -(bool)isComplexType;
 

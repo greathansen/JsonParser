@@ -28,6 +28,10 @@
     return [self.SubStringType isEqualToString:@"NSString"];
 }
 
+-(bool)isDate{
+    return [self.SubStringType isEqualToString:@"NSDate"];
+}
+
 -(bool)isCollection{
     return [self.SubStringType isEqualToString:@"NSMutableArray"] ||
     [self.SubStringType isEqualToString:@"NSArray"] ||
@@ -37,5 +41,4 @@
 -(bool)isComplexType{
     return [self.Type hasPrefix:@"T@"];
 }
-
 @end
