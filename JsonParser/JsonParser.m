@@ -123,6 +123,9 @@
 -(void)setValueForPrimitiveType :(Property*)property : (NSDictionary*)data :(id)returnType{
     
     NSString * value = [data valueForKeyPath:property.Name];
+    
+    if([value isKindOfClass:NSNull.class]) return;
+    
     [returnType setValue:value forKeyPath:property.Name];
 }
 
