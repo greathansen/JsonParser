@@ -122,25 +122,8 @@
 
 -(void)setValueForPrimitiveType :(Property*)property : (NSDictionary*)data :(id)returnType{
     
-    const char * charType = [[property.Type substringFromIndex:1] UTF8String];
     NSString * value = [data valueForKeyPath:property.Name];
-    
-    if(value == nil) return;
-    
-    if (strcmp(charType, @encode(float)) == 0) {
-        float f = [value floatValue];
-        [returnType setFloat:f forKey:property.Name];
-    }
-    else if (strcmp(charType, @encode(int)) == 0) {
-        [returnType setValue:value forKeyPath:property.Name];
-    }
-    else if (strcmp(charType, @encode(bool)) == 0) {
-        bool b = [value boolValue];
-        [returnType setBool:b forKey:property.Name];
-    }
-    else {
-        [returnType setValue:value forKeyPath:property.Name];
-    }
+    [returnType setValue:value forKeyPath:property.Name];
 }
 
 -(void)setValueForCollection :(Property*)property : (NSDictionary*)data :(id)returnType{
