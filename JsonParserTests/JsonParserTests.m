@@ -72,4 +72,69 @@
     assert([people.LastLogIn isEqualToDate:date]);
 }
 
+-(void)testToJsonString{
+    JsonParser *parser = [[JsonParser alloc] init];
+    Entity *people = [[Entity alloc] init];
+    people.Name = @"gustavo";
+    people.LastName = @"hansen";
+    
+    NSString* result = [parser toJsonString:people :Entity.class];
+    
+    assert([@"{\"Name\" : \"gustavo\",\"Age\" : \"0\",\"LastName\" : \"hansen\"}" isEqualToString:result]);
+}
+
+-(void)testToJsonString2{
+    JsonParser *parser = [[JsonParser alloc] init];
+    Entity *people = [[Entity alloc] init];
+    people.Name = @"gustavo";
+    people.LastName = @"hansen";
+    
+    NSArray* peoples = [[NSArray alloc] initWithObjects:people, nil];
+    
+    EntityWithComplexType *complex= [[EntityWithComplexType alloc] init];
+    complex.Peoples = peoples;
+    
+    NSString* result = [parser toJsonString:complex :EntityWithComplexType.class];
+    
+    assert([@"{\"Peoples\" : [{\"Name\" : \"gustavo\",\"Age\" : \"0\",\"LastName\" : \"hansen\"}]}" isEqualToString:result]);
+}
+
+-(void)testToJsonString3{
+    JsonParser *parser = [[JsonParser alloc] init];
+    Entity *people = [[Entity alloc] init];
+    people.Name = @"gustavo";
+    people.LastName = @"hansen";
+    
+    NSArray* peoples = [[NSArray alloc] initWithObjects:people,people, nil];
+    
+    EntityWithComplexType *complex= [[EntityWithComplexType alloc] init];
+    complex.Peoples = peoples;
+    
+    NSString *result = [parser toJsonString:complex :EntityWithComplexType.class];
+    
+    assert([@"{\"Peoples\" : [{\"Name\" : \"gustavo\",\"Age\" : \"0\",\"LastName\" : \"hansen\"},{\"Name\" : \"gustavo\",\"Age\" : \"0\",\"LastName\" : \"hansen\"}]}" isEqualToString:result]);
+}
+
+-(void)testToJsonString4{
+   /* JsonParser *parser = [[JsonParser alloc] init];
+    Entity *people = [[Entity alloc] init];
+    people.Name = @"gustavo";
+    people.LastName = @"hansen";
+    
+    NSMutableArray<Entity>* peoples = [[NSMutableArray alloc] initWithObjects:people,people, nil];
+    
+    NSString* result = [parser toJsonString:peoples : [peoples class]];
+    
+    assert([@"{\"peoples\" : [{\"Name\" : \"gustavo\",\"Age\" : \"0\",\"LastName\" : \"hansen\"},{\"Name\" : \"gustavo\",\"Age\" : \"0\",\"LastName\" : \"hansen\"}]}" isEqualToString:result]);
+*/
+}
+
+-(void)testToJsonString5{
+    JsonParser *parser = [[JsonParser alloc] init];
+    NSString * name = @"Gustavo";
+    NSString* result = [parser toJsonString:name Property:@"name"];
+    
+    assert([@"{\"name\" : \"Gustavo\"}" isEqualToString:result]);
+}
+
 @end
