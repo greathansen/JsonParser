@@ -10,6 +10,8 @@
 		ECC438CC19BF303300F23F08 /* JsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = ECC438CB19BF303300F23F08 /* JsonParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		ECC438D219BF303300F23F08 /* JsonParser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECC438C619BF303300F23F08 /* JsonParser.framework */; };
 		ECC438D919BF303300F23F08 /* JsonParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC438D819BF303300F23F08 /* JsonParserTests.swift */; };
+		ECC438E319BF307B00F23F08 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC438E219BF307B00F23F08 /* JsonParser.swift */; };
+		ECC438E519BF309900F23F08 /* Property.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC438E419BF309900F23F08 /* Property.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		ECC438D119BF303300F23F08 /* JsonParserTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JsonParserTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECC438D719BF303300F23F08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECC438D819BF303300F23F08 /* JsonParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParserTests.swift; sourceTree = "<group>"; };
+		ECC438E219BF307B00F23F08 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		ECC438E419BF309900F23F08 /* Property.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Property.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 			children = (
 				ECC438CB19BF303300F23F08 /* JsonParser.h */,
 				ECC438C919BF303300F23F08 /* Supporting Files */,
+				ECC438E219BF307B00F23F08 /* JsonParser.swift */,
+				ECC438E419BF309900F23F08 /* Property.swift */,
 			);
 			path = JsonParser;
 			sourceTree = "<group>";
@@ -210,6 +216,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECC438E519BF309900F23F08 /* Property.swift in Sources */,
+				ECC438E319BF307B00F23F08 /* JsonParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +328,7 @@
 		ECC438DD19BF303300F23F08 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -329,12 +338,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		ECC438DE19BF303300F23F08 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

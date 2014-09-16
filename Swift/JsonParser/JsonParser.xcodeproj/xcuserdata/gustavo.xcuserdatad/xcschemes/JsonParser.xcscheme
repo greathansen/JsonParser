@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0510"
+   LastUpgradeVersion = "0600"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ECF3F0FF19A5050F00D05D8B"
-               BuildableName = "libJsonParser.a"
+               BlueprintIdentifier = "ECC438C519BF303300F23F08"
+               BuildableName = "JsonParser.framework"
                BlueprintName = "JsonParser"
                ReferencedContainer = "container:JsonParser.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ECF3F10F19A5050F00D05D8B"
+               BlueprintIdentifier = "ECC438D019BF303300F23F08"
                BuildableName = "JsonParserTests.xctest"
                BlueprintName = "JsonParserTests"
                ReferencedContainer = "container:JsonParser.xcodeproj">

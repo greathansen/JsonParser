@@ -19,22 +19,25 @@
 
 @implementation JsonParser
 
--(NSString*)toJsonString : (id)object :(Class)type{
-
+-(NSString*)toJsonString : (id)object{
+    
     NSMutableString *jsonResult = [[NSMutableString alloc] initWithString:@"{"];
     
     jsonResult = [self getString :object :jsonResult];
-
+    
     NSString *subString = [jsonResult substringWithRange:NSMakeRange(0, [jsonResult length] -1)];
     NSMutableString * result =  [[NSMutableString alloc] initWithString:subString];
+    
+    if([result length] == 0){return nil;}
+    
     [result appendString:@"}"];
-
+    
     return result;
 }
 
 -(NSString*)toJsonString:(id)object Property:(NSString*)name{
-
-     NSMutableString *jsonResult = [[NSMutableString alloc] initWithString:@"{"];
+    
+    NSMutableString *jsonResult = [[NSMutableString alloc] initWithString:@"{"];
     
     [jsonResult appendFormat:@"\"%@\" : \"%@\"", name, object];
     [jsonResult appendString:@"}"];
@@ -56,10 +59,12 @@
             }
             else if([property isCollection]){
                 
+                NSArray * array = [object valueForKey:property.Name];
+                
+                if([array count]>0){
+                    
                     [jsonResult appendFormat:@"\"%@\" : [", property.Name];
-                
-                    NSArray * array = [object valueForKey:property.Name];
-                
+                    
                     for (NSDictionary* dicc in array) {
                         [jsonResult appendString:@"{"];
                         [self getString:dicc :jsonResult];
@@ -71,24 +76,41 @@
                         
                         [jsonResult appendString:@"},"];
                     }
-                
+                    
                     NSString *subString = [jsonResult substringWithRange:NSMakeRange(0, [jsonResult length] -1)];
                     NSMutableString * result =  [[NSMutableString alloc] initWithString:subString];
                     jsonResult = result;
-                
-                    [jsonResult appendString:@"] "];
+                    
+                    [jsonResult appendString:@"],"];
+                }
             }
             else{
                 id complexType = [object valueForKey:property.Name];
                 if(complexType != nil){
-                    [jsonResult appendString:[self getString:complexType :jsonResult]];
+                    [jsonResult appendFormat:@"\"%@\" : {", property.Name];
+                    [self getString:complexType :jsonResult];
+                    
+                    NSString *subString = [jsonResult substringWithRange:NSMakeRange(0, [jsonResult length] -1)];
+                    NSMutableString * result =  [[NSMutableString alloc] initWithString:subString];
+                    jsonResult = result;
+                    
+                    [jsonResult appendString:@"},"];
                 }
             }
             
         }else{
-            NSString * value = [object valueForKey:property.Name];
-            if(value != nil){
-                [jsonResult appendFormat:@"\"%@\" : \"%@\",", property.Name, value];
+            NSString * result;
+            
+            if(property.isBoolean){
+                NSInteger value = [[object valueForKey:property.Name] integerValue];
+                
+                result = value ? @"true" : @"false";
+            }else {
+                result = [object valueForKey:property.Name];
+            }
+            
+            if(result != nil){
+                [jsonResult appendFormat:@"\"%@\" : \"%@\",", property.Name, result];
             }
         }
     }
